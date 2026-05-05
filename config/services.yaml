@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    PsychedCms\MessageTemplate\:
+        resource: '../src/'
+        exclude:
+            - '../src/Entity/'
+            - '../src/PsychedCmsMessageTemplateBundle.php'
