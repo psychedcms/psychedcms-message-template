@@ -7,4 +7,10 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Entity/'
+            - '../src/Translation/'
+            - '../src/Exception/'
             - '../src/PsychedCmsMessageTemplateBundle.php'
+
+    Gedmo\Translatable\TranslatableListener:
+        alias: stof_doctrine_extensions.listener.translatable
+        public: false

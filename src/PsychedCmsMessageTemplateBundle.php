@@ -8,15 +8,37 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-/**
- * Doctrine mapping pour `src/Entity/` sera ajouté avec l'entité `MessageTemplate` (cf. Task #8).
- */
-
 final class PsychedCmsMessageTemplateBundle extends AbstractBundle
 {
     public function getPath(): string
     {
         return \dirname(__DIR__);
+    }
+
+    public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
+    {
+        if ($builder->hasExtension('doctrine')) {
+            $builder->prependExtensionConfig('doctrine', [
+                'orm' => [
+                    'mappings' => [
+                        'PsychedCmsMessageTemplate' => [
+                            'type' => 'attribute',
+                            'is_bundle' => false,
+                            'dir' => $this->getPath() . '/src/Entity',
+                            'prefix' => 'PsychedCms\\MessageTemplate\\Entity',
+                            'alias' => 'PsychedCmsMessageTemplate',
+                        ],
+                        'PsychedCmsMessageTemplateTranslation' => [
+                            'type' => 'attribute',
+                            'is_bundle' => false,
+                            'dir' => $this->getPath() . '/src/Translation',
+                            'prefix' => 'PsychedCms\\MessageTemplate\\Translation',
+                            'alias' => 'PsychedCmsMessageTemplateTranslation',
+                        ],
+                    ],
+                ],
+            ]);
+        }
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
