@@ -29,15 +29,15 @@ use Symfony\Component\Validator\Constraints as Assert;
     shortName: 'MessageTemplate',
     operations: [
         new GetCollection(
-            uriTemplate: '/admin/message-templates',
+            uriTemplate: '/message-templates',
             security: 'is_granted("ROLE_ADMIN")',
         ),
         new Get(
-            uriTemplate: '/admin/message-templates/{key}',
+            uriTemplate: '/message-templates/{key}',
             security: 'is_granted("ROLE_ADMIN")',
         ),
         new Patch(
-            uriTemplate: '/admin/message-templates/{key}',
+            uriTemplate: '/message-templates/{key}',
             security: 'is_granted("ROLE_ADMIN")',
         ),
         new Post(
