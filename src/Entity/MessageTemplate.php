@@ -31,22 +31,22 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new GetCollection(
             uriTemplate: '/message-templates',
-            security: 'is_granted("ROLE_ADMIN")',
+            security: 'is_granted("PERMISSION_MESSAGETEMPLATE_MANAGE")',
         ),
         new Get(
             uriTemplate: '/message-templates/{key}',
-            security: 'is_granted("ROLE_ADMIN")',
+            security: 'is_granted("PERMISSION_MESSAGETEMPLATE_MANAGE")',
         ),
         new Patch(
             uriTemplate: '/message-templates/{key}',
-            security: 'is_granted("ROLE_ADMIN")',
+            security: 'is_granted("PERMISSION_MESSAGETEMPLATE_MANAGE")',
         ),
         new Post(
             uriTemplate: '/message-templates/{key}/preview',
             input: false,
             output: false,
             processor: MessageTemplatePreviewProcessor::class,
-            security: 'is_granted("ROLE_ADMIN")',
+            security: 'is_granted("PERMISSION_MESSAGETEMPLATE_MANAGE")',
             read: false,
         ),
     ],

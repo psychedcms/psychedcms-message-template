@@ -39,6 +39,14 @@ final class PsychedCmsMessageTemplateBundle extends AbstractBundle
                 ],
             ]);
         }
+
+        if ($builder->hasExtension('psyched_cms_auth')) {
+            $builder->prependExtensionConfig('psyched_cms_auth', [
+                'permissions' => [
+                    'messagetemplate' => ['messagetemplate:manage'],
+                ],
+            ]);
+        }
     }
 
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
