@@ -25,6 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessageTemplateRepository::class)]
 #[ORM\Table(name: 'message_templates')]
+#[Gedmo\TranslationEntity(class: MessageTemplateTranslation::class)]
 #[ApiResource(
     shortName: 'MessageTemplate',
     operations: [
@@ -83,9 +84,10 @@ class MessageTemplate
     private string $body = '';
 
     /**
-     * Admin-facing label describing the purpose of this template.
+     * Admin-facing label describing the purpose of this template (translatable).
      */
     #[ORM\Column(length: 255, nullable: true)]
+    #[Gedmo\Translatable]
     #[Groups(['message_template:read'])]
     private ?string $description = null;
 
